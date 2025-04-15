@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
-}
+.<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insta.mn - Дагагч нэмэх</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .price {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .warning {
+      background: #ffe4e1;
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid red;
+      color: darkred;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Инстаграм дагагч нэмэх үйлчилгээ</h1>
+    <p>Private profile-тай бол дагагч нэмэгдэхгүйг анхаарна уу!</p>
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+    <input type="text" id="username" placeholder="Instagram username оруулна уу (@temdegteiгээр)">
+    
+    <input type="number" id="count" placeholder="Дагагчийн тоо (хамгийн багадаа 50, ихдээ 10,000)" min="50" max="10000" value="100">
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+    <div class="price">Үнэ: <span id="price">₮3,000</span></div>
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+    <button onclick="purchase()">Худалдан авах</button>
 
-.App-link {
-  color: #61dafb;
-}
+    <div class="warning">
+      ⚠️ Та тохиргоог унтраагаагүй бол дагагч нэмэгдэхгүйг анхаарна уу!
+    </div>
+  </div>
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  <script>
+    const countInput = document.getElementById('count');
+    const priceDisplay = document.getElementById('price');
+
+    countInput.addEventListener('input', () => {
+      const count = parseInt(countInput.value);
+      const price = count * 30;
+      priceDisplay.textContent = `₮${price.toLocaleString()}`;
+    });
+
+    function purchase() {
+      const username = document.getElementById('username').value;
+      const count = document.getElementById('count').value;
+      if (!username) {
+        alert("Instagram нэрээ оруулна уу!");
+        return;
+      }
+      alert(`${count} дагагчийг @${username} дээр нэмэх захиалга өглөө.`);
+    }
+  </script>
+</body>
+</html>
